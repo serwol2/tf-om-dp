@@ -1,0 +1,31 @@
+[
+    {
+      "name": "openmeetings",
+      "image": "public.ecr.aws/b0e2l4e5/openmeetings-dp",
+      "memory": 2048,
+      "essential": true,
+      "environment": [
+        {
+          "name" : "OM_TYPE",
+          "value": "min"
+        },
+        {
+          "name" : "OM_KURENTO_WS_URL",
+          "value": "ws://10.0.1.15:8888/kurento" 
+        }
+      ],
+      "portMappings": [
+        {
+          "containerPort": 5443,
+          "hostPort": 5443
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": { 
+          "awslogs-group" : "/ecs/frontend-container",
+          "awslogs-region": "us-east-1"
+        }
+      }
+    }
+]
