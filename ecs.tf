@@ -2,9 +2,7 @@ resource "aws_ecs_cluster" "om-web-cluster" {
   name               = var.cluster_name
   capacity_providers = [aws_ecs_capacity_provider.om-provider.name]
   tags = {
-    "env"       = "om-cluster"
     "Name"      = "om-cluster"
-    #"createdBy" = "mkerimova"
   }
 }
 
@@ -21,15 +19,12 @@ resource "aws_ecs_capacity_provider" "om-provider" {
   }
 }
 
-# update file container-def, so it's pulling image from ecr
 resource "aws_ecs_task_definition" "om-task-definition" {
   family                = "web-family"
   container_definitions = file("container-definitions/container-def.json")
   network_mode          = "bridge"
   tags = {
-    "env"       = "om-task"
     "Name"      = "om-task"
-    # "createdBy" = "mkerimova"
   }
 }
 
@@ -37,7 +32,7 @@ resource "aws_ecs_service" "service" {
   name            = "web-service"
   cluster         = aws_ecs_cluster.om-web-cluster.id
   task_definition = aws_ecs_task_definition.om-task-definition.arn
-  desired_count   = 2 #10
+  desired_count   = 2 
   ordered_placement_strategy {
     type  = "binpack"
     field = "cpu"
@@ -58,8 +53,6 @@ resource "aws_ecs_service" "service" {
 resource "aws_cloudwatch_log_group" "log_group" {
   name = "/ecs/frontend-container"
   tags = {
-    "env"       = "om"
     "Name"      = "om"
-    #"createdBy" = "mkerimova"
   }
 }

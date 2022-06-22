@@ -4,8 +4,7 @@ resource "aws_lb" "om-lb" {
   internal           = false
   subnets            = module.vpc.public_subnets
   tags = {
-    "env"       = "om"
-    #"createdBy" = "mkerimova"
+    "Name"       = "om"
   }
   security_groups = [aws_security_group.lb.id]
 }
@@ -27,9 +26,7 @@ resource "aws_security_group" "lb" {
   }
 
   tags = {
-    "env"       = "om"
     "Name"      = "om-lb"
-    #"createdBy" = "mkerimova"
   }
 }
 
