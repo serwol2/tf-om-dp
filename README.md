@@ -12,5 +12,5 @@
 
 Note: it can take about 10 minutes to provision all resources.
 ## How to delete the infrastructure?
-1. Terminate ALB
+1. Terminate ALB and ASG
 2. Run `terraform destroy`

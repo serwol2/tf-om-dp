@@ -1,7 +1,7 @@
 [
     {
-      "name": "openmeetings",
-      "image": "public.ecr.aws/b0e2l4e5/openmeetings-dp",
+      "name": "openmeetings-dp",
+      "image": "public.ecr.aws/b0e2l4e5/openmeetings-dp:latest",
       "memory": 2048,
       "essential": true,
       "environment": [

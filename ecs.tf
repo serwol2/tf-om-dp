@@ -32,14 +32,18 @@ resource "aws_ecs_service" "service" {
   name            = "web-service"
   cluster         = aws_ecs_cluster.om-web-cluster.id
   task_definition = aws_ecs_task_definition.om-task-definition.arn
-  desired_count   = 2 
+  desired_count   = 2
+  deployment_maximum_percent         = 200 #
+  deployment_minimum_healthy_percent = 50  #
+  health_check_grace_period_seconds  = 10  #
+  #memory                             = 512 #
   ordered_placement_strategy {
     type  = "binpack"
     field = "cpu"
   }
   load_balancer {
     target_group_arn = aws_lb_target_group.lb_target_group.arn   
-    container_name   = "openmeetings"
+    container_name   = "openmeetings-dp"   #container_name   = "openmeetings"
     container_port   = 5443
   }
   # Optional: Allow external changes without Terraform plan difference(for example ASG)
