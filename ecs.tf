@@ -1,6 +1,7 @@
 resource "aws_ecs_cluster" "om-web-cluster" {
   name               = var.cluster_name
-  capacity_providers = [aws_ecs_capacity_provider.om-provider.name]
+  #capacity_providers = [aws_ecs_capacity_provider.om-provider.name]
+  #capacity_providers = [aws_ecs_capacity_providers.om-provider.name]
   tags = {
     "Name"      = "om-cluster"
   }
