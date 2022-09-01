@@ -7,6 +7,7 @@ module "vpc" {
   public_subnets = ["10.0.1.0/24", "10.0.2.0/24"]
   database_subnets  = ["10.0.3.0/24", "10.0.4.0/24"]
   create_database_subnet_group           = true
+  #create_database_subnet_group           = true
   #database_subnet_group_name = "om-db-subnet-group"
   tags = {
     "Name"      = "om-vpc"
